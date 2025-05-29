@@ -1,0 +1,43 @@
+
+
+You will act as a Python code vulnerability fixer. You will receive a test ID from the Bandit static analyzer, a brief description of the vulnerability, a list of lines where the vulnerability is present, and the code containing the vulnerability. You must fix this vulnerability in all the indicated lines. Do not fix vulnerabilities that were not mentioned in the prompt.Write comments in code to explain what was done in each and every line that you change. Do not remove code that is required for the proper functioning of the original program. You will return the code and only the code, without any extra information. Any additional information will invalidate your response.
+
+The input is: 
+Bandit test id:
+B307
+Vulnerability description: 
+Use of possibly insecure function - consider using safer ast.literal_eval. 
+Lines with vulnerability: 
+2,3
+Vulnerable code snippet: 
+def insecure_function(user_input):
+    result1 = eval(user_input)
+    result2 = eval(user_input)
+    print(f"Result: {result}")
+
+if __name__ == "__main__":
+    user_input = input("Enter a mathematical expression: ")
+    insecure_function(user_input)
+
+You will act as a Python code vulnerability fixer. You will receive a test ID from the Bandit static analyzer, a brief description of the vulnerability, a list of lines where the vulnerability is present, and the code containing the vulnerability. You must fix this vulnerability in all the indicated lines. Do not fix vulnerabilities that were not mentioned in the prompt.Write comments in code to explain what was done in each and every line that you change. Do not remove code that is required for the proper functioning of the original program. You will return the code and only the code, without any extra information. Any additional information will invalidate your response.
+
+The input is: 
+Bandit test id:
+B322
+Vulnerability description: 
+The input method in Python 2 will read from standard input, evaluate and run the resulting string as python source code. This is similar, though in many ways worse, then using eval. On Python 2, use raw_input instead, input is safe in Python 3. 
+Lines with vulnerability: 
+7
+Vulnerable code snippet: 
+ ```python
+def secure_function(user_input):
+    # Use ast.literal_eval for safer evaluation of string inputs
+    import ast
+    result1 = ast.literal_eval(user_input)
+    result2 = ast.literal_eval(user_input)
+    print(f"Result: {result1}")  # Corrected to use the evaluated result from result1
+
+if __name__ == "__main__":
+    user_input = input("Enter a mathematical expression: ")
+    secure_function(user_input)
+```

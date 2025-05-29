@@ -1,0 +1,10 @@
+import pickle
+import os
+
+class RCE:
+    def __reduce__(self):
+        # The vulnerability here is using the pickle module in a way that could execute arbitrary code, which poses security risks.
+        return (os._exit, (0,))  # Changed to os._exit to avoid potential command injection and execution.
+        
+pickled = pickle.dumps(RCE())
+print(pickled)
